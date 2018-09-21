@@ -12,8 +12,8 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
       DB::table('users')->insert([
-        ['nombre' => 'andreu', 'email' => 'anduwet2@gmail.com', 'password' => bcrypt('marinero'), 'api_token' => '12345'],
-        ['nombre' => 'marta', 'email' => 'marta@gmail.com', 'password' => bcrypt('marinera'), 'api_token' => '12346']
+        ['clave' => 'andreu', 'email' => 'anduwet2@gmail.com', 'password' => bcrypt('marinero'), 'api_token' => '12345'],
+        ['clave' => 'marta', 'email' => 'marta@gmail.com', 'password' => bcrypt('marinera'), 'api_token' => '12346']
       ]);
     }
 }
