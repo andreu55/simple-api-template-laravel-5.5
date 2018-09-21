@@ -14,18 +14,12 @@ class APIController extends Controller {
 
   public function getLogin(Request $request) {
 
-    // Meter Validation
+    // TODO: Meter Validation
 
     $res = [];
 
-    $email = isset($request->email) ? $request->email : '';
-    $pass = isset($request->pass) ? $request->pass : 0;
-
-    // print_r($pass);
-    // exit();
-
-    $status = 200;
-    $msj = '';
+    $email = $request->email ?? '';
+    $pass = $request->pass ?? 0;    
 
     if ($email) {
       if ($pass) {
@@ -48,18 +42,13 @@ class APIController extends Controller {
               $user->generateToken();
             }
 
+            $status = 200;
             $res['user'] = $user;
-          }
-          else { $status = 401; $msj = 'No existe / Borrado / Credenciales inválidas'; }
-        }
-        // El usuario no existe.
-        else { $status = 400; $msj = 'Credenciales inválidas'; }
-      }
-      else { $status = 400; $msj = 'Falta el pass'; }
-    }
-    else { $status = 400; $msj = 'Falta el email/usuario'; }
 
-    $res['error'] = $msj;
+          } else { $status = 401; $res['error'] = 'No existe / Borrado / Credenciales inválidas'; }
+        } else { $status = 400; $res['error'] = 'Credenciales inválidas'; }
+      } else { $status = 400; $res['error'] = 'Falta el pass'; }
+    } else { $status = 400; $res['error'] = 'Falta el email/usuario'; }
 
     return response()->json($res, $status);
   }
