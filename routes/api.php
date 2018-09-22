@@ -14,10 +14,10 @@ use Illuminate\Http\Request;
 */
 
 Route::options('{any?}', function ($any) { return response('', 200); })->where('any', '.*'); // Ruta OPTIONS atrapalotodo
-Route::post('/login', 'APIController@getLogin');
+Route::post('login', 'APIController@getLogin');
 
 Route::group(['middleware' => ['auth:api']], function() {
 
-    Route::post('/user', 'APIController@getUser');
-    
+    Route::post('user', 'APIController@getUser');
+
 });
